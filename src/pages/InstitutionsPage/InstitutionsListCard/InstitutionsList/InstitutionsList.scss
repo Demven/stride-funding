@@ -1,0 +1,69 @@
+@import '../../../../styles/colors';
+@import '../../../../styles/fonts';
+
+$componentName: 'InstitutionsList';
+
+.#{$componentName} {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: $font-sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  color: $color-text-medium;
+  overflow: auto;
+
+  &--empty {
+    &:after {
+      content: 'No Results';
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: $font-sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1;
+      color: $color-text-light;
+    }
+  }
+
+  &__institution {
+    padding: 20px 24px;
+    transition: background 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      background: $color-background-light;
+    }
+    &:last-of-type {
+      border-radius: 0 0 6px 6px;
+    }
+
+    &--selected {
+      background: $color-background-light;
+      cursor: default;
+    }
+  }
+
+  &__name {
+    font-weight: bold;
+    line-height: 1.3;
+  }
+
+  &__address {
+    margin-top: 8px;
+    font-size: 12px;
+    color: $color-text-light;
+  }
+
+  &__no-results {
+    font-size: 24px;
+    line-height: 1;
+    color: $color-text-medium;
+  }
+}

@@ -1,0 +1,36 @@
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.TextField {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    margin-bottom: 2px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    color: $color-background;
+  }
+
+  &__input {
+    width: 100%;
+    border: 0;
+    font-family: $font-sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    padding: 8px 4px;
+    border-radius: 4px 4px 0 0;
+    outline: none;
+    background: $color-white;
+    color: $color-text-medium;
+    box-sizing: border-box;
+    border-bottom: 2px solid $color-background;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: $color-pink;
+    }
+  }
+}

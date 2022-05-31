@@ -1,0 +1,46 @@
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.Toast {
+  width: 400px;
+  height: auto;
+  padding: 16px 32px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  color: $color-text-medium;
+  font-size: 16px;
+  background: $color-background-light;
+  border: $color-border;
+  border-radius: 4px;
+  box-shadow: 0 10px 10px 0 $color-box-shadow;
+  transform: translateX(-50%) translateY(100px);
+  transition: transform 0.2s ease-in;
+  z-index: 1;
+
+  &--visible {
+    transform: translateX(-50%) translateY(-32px);
+  }
+
+  &--info {
+    background: $color-aquamarine;
+    color: $color-white;
+  }
+
+  &--success {
+    background: $color-green;
+    color: $color-white;
+  }
+
+  &--error {
+    background: $color-pink;
+    color: $color-white;
+  }
+
+  &__close-button {
+    color: $color-white;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+}
