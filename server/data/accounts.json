@@ -1,0 +1,12 @@
+{
+  "mathilda@stride.com": {
+    "name": "Mathilda",
+    "email": "mathilda@stride.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWF0aGlsZGEifQ.NBmf0e1ZHEI2WgbHKzxOI7vXU6CsS68G6YMr3OfL0K8"
+  },
+  "andrew@stride.com": {
+    "name": "Andrew",
+    "email": "andrew@stride.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQW5kcmV3In0.qK3Sj-ONnUjppT7dp1onXdS-9LtgpikLLd1SIx_u6u4"
+  }
+}
