@@ -44,6 +44,7 @@ app.post('/validate', (req, res) => {
 app.get('/institutions', (req, res) => {
   const searchByName = (req.query.name || '').toLowerCase();
   const searchByZip = req.query.zip || '';
+  const limit = parseInt(req.query.limit, 10) || 100;
 
   const filteredInstitutions = (searchByName || searchByZip)
     ? institutions.filter((institution) => (
@@ -51,11 +52,18 @@ app.get('/institutions', (req, res) => {
     ))
     : institutions;
 
-  const sortedInstitutions = filteredInstitutions.sort((a, b) => {
-    if (a.name < b.name) return -1;
-    if (a.name > b.name) return 1;
-    return 0;
-  });
+  const withoutAnnualRate = filteredInstitutions.filter((institution) => !Number(institution.annualRate));
+  const withAnnualRate = filteredInstitutions.filter((institution) => !!Number(institution.annualRate));
+
+  const sortedInstitutions = [
+    ...withAnnualRate.sort((a, b) => {
+      if (a.annualRate < b.annualRate) return -1;
+      if (a.annualRate > b.annualRate) return 1;
+      return 0;
+    }),
+    ...withoutAnnualRate,
+  ]
+    .slice(0, limit);
 
   return res.json(sortedInstitutions);
 });
@@ -70,8 +78,8 @@ app.get('/institutions/saved', (req, res) => {
 
   const filteredSavedInstitutions = (searchByName || searchByZip)
     ? savedInstitutions.filter((institution) => (
-      institution.name.toLowerCase().includes(searchByName) && (institution.zip || '').includes(searchByZip)
-    ))
+        institution.name.toLowerCase().includes(searchByName) && (institution.zip || '').includes(searchByZip)
+      ))
     : savedInstitutions;
 
   return res.json(filteredSavedInstitutions);
@@ -92,8 +100,8 @@ app.post('/institution/:institutionId/save/', (req, res) => {
 
   const savedInstitutionsJson = require(SAVED_DATA_PATH);
   savedInstitutionsJson[email] = [
-    ...(savedInstitutionsJson[email] || []),
     uuid,
+    ...(savedInstitutionsJson[email] || []),
   ];
 
   fs.writeFileSync(
