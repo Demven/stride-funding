@@ -64,7 +64,9 @@ function InstitutionsListCard (props:InstitutionsListCardProps) {
         <>
           <div className='InstitutionsListCard__title-container'>
             <div className='InstitutionsListCard__title'>
-              {showSaved ? 'Saved Institutions' : 'All Institutions'}
+              {filtersVisible
+                ? 'Search All'
+                : (showSaved ? 'Saved' : 'Top 100')}
             </div>
 
             <IconButton

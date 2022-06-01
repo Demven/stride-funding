@@ -12,6 +12,7 @@ import { fetchSavedInstitutions } from '../../../redux/dispatchers/institutions'
 import * as api from '../../../services/api';
 import Institution from '../../../types/Institution';
 import './InstitutionCard.scss';
+import RateLabel from "../../../components/RateLabel/RateLabel";
 
 interface InstitutionCardProps {
   className?: string;

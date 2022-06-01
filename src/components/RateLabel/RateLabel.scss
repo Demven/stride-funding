@@ -1,0 +1,22 @@
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.RateLabel {
+  padding: 6px 16px;
+  align-self: flex-start;
+  border-radius: 4px;
+  font-size: 12px;
+  color: $color-white;
+
+  &--passing {
+    background: $color-green;
+  }
+
+  &--zone {
+    background: $color-peach;
+  }
+
+  &--failing {
+    background: $color-red;
+  }
+}

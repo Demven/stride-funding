@@ -2,11 +2,60 @@ import React from 'react';
 import classNames from 'classnames';
 import Institution from '../../../../types/Institution';
 import './InstitutionDetails.scss';
+import RateLabel from "../../../../components/RateLabel/RateLabel";
 
 interface InstitutionDetailsProps {
   className?: string;
   selectedInstitution: Institution|undefined;
 }
+
+enum InstitutionDetail {
+  Type = 'institutionType',
+  Name = 'name',
+  City = 'city',
+  State = 'state',
+  Zip = 'zip',
+  CredentialLevel = 'credentialLevel',
+  CIPName = 'cipName',
+  AnnualRate = 'annualRate',
+  IncomeRate = 'incomeRate',
+  TransitionalRate = 'transitionalRate',
+  TransitionalDiscretionaryRate = 'transitionalDiscretionaryRate',
+  SSAMeanEarnings = 'ssaMeanEarnings',
+  SSAMedianEarnings = 'ssaMedianEarnings',
+}
+
+const DETAILS_TO_SHOW:InstitutionDetail[] = [
+  InstitutionDetail.Type,
+  InstitutionDetail.Name,
+  InstitutionDetail.City,
+  InstitutionDetail.State,
+  InstitutionDetail.Zip,
+  InstitutionDetail.CredentialLevel,
+  InstitutionDetail.CIPName,
+  InstitutionDetail.AnnualRate,
+  InstitutionDetail.IncomeRate,
+  InstitutionDetail.TransitionalRate,
+  InstitutionDetail.TransitionalDiscretionaryRate,
+  InstitutionDetail.SSAMeanEarnings,
+  InstitutionDetail.SSAMedianEarnings,
+];
+
+const DETAIL_TITLE = {
+  [InstitutionDetail.Type]: 'Institution Type',
+  [InstitutionDetail.Name]: 'Institution Name',
+  [InstitutionDetail.City]: 'City',
+  [InstitutionDetail.State]: 'State',
+  [InstitutionDetail.Zip]: 'Zip',
+  [InstitutionDetail.CredentialLevel]: 'Credential Level',
+  [InstitutionDetail.CIPName]: 'CIP Name',
+  [InstitutionDetail.AnnualRate]: 'Debt-to-Earnings Annual Rate',
+  [InstitutionDetail.IncomeRate]: 'Debt-to-Earnings Discretionary Income Rate',
+  [InstitutionDetail.TransitionalRate]: 'Debt-to-Earnings Transitional Rate',
+  [InstitutionDetail.TransitionalDiscretionaryRate]: 'Transitional Discretionary Rate',
+  [InstitutionDetail.SSAMeanEarnings]: 'Mean  Annual Earnings From SSA',
+  [InstitutionDetail.SSAMedianEarnings]: 'Median Annual Earnings from SSA',
+};
 
 export default function InstitutionDetails (props:InstitutionDetailsProps) {
   const {
@@ -15,35 +64,26 @@ export default function InstitutionDetails (props:InstitutionDetailsProps) {
   } = props;
 
   return (
-    <div className={classNames('InstitutionDetails', className, {
-      'InstitutionDetails--empty': !selectedInstitution?.name,
-    })}>
+    <div
+      className={classNames('InstitutionDetails', className, {
+        'InstitutionDetails--empty': !selectedInstitution?.name,
+      })}
+    >
+      <RateLabel
+        className='InstitutionDetails__rate-label'
+        annualRate={selectedInstitution?.annualRate}
+      />
+
       {selectedInstitution && (
-        <ul>
-          <li><b>ID:</b> {selectedInstitution.institutionId}</li>
-          <li><b>Type:</b> {selectedInstitution.institutionType}</li>
-          <li><b>Name:</b> {selectedInstitution.name}</li>
-          <li><b>City:</b> {selectedInstitution.city}</li>
-          <li><b>State:</b> {selectedInstitution.state}</li>
-          <li><b>Zip Code:</b> {selectedInstitution.zip}</li>
-          <li><b>Zip Code:</b> {selectedInstitution.zip}</li>
-          <li><b>CIP:</b> {selectedInstitution.cipCode}</li>
-          <li><b>CIP Name:</b> {selectedInstitution.cipName}</li>
-          <li><b>Credential Level:</b> {selectedInstitution.credentialLevel}</li>
-          <li><b>Annual Rate:</b> {selectedInstitution.annualRate}</li>
-          <li><b>Annual Rate Numerator:</b> {selectedInstitution.annualRateNumerator}</li>
-          <li><b>Annual Rate Denominator:</b> {selectedInstitution.annualRateDenominator}</li>
-          <li><b>Income Rate:</b> {selectedInstitution.incomeRate}</li>
-          <li><b>Income Rate Numerator:</b> {selectedInstitution.incomeRateNumerator}</li>
-          <li><b>Income Rate Denominator:</b> {selectedInstitution.incomeRateDenominator}</li>
-          <li><b>Transitional Rate:</b> {selectedInstitution.transitionalRate}</li>
-          <li><b>Transitional Rate Numerator:</b> {selectedInstitution.transitionalRateNumerator}</li>
-          <li><b>Transitional Rate Denominator:</b> {selectedInstitution.transitionalRateDenominator}</li>
-          <li><b>Transitional Discretionary Rate:</b> {selectedInstitution.transitionalDiscretionaryRate}</li>
-          <li><b>Transitional Discretionary Rate Numerator:</b> {selectedInstitution.transitionalDiscretionaryRateNumerator}</li>
-          <li><b>Transitional Discretionary Rate Denominator:</b> {selectedInstitution.transitionalDiscretionaryRateDenominator}</li>
-          <li><b>SSA Mean Earnings:</b> {selectedInstitution.ssaMeanEarnings}</li>
-          <li><b>SSA Median Earnings:</b> {selectedInstitution.ssaMedianEarnings}</li>
+        <ul className='InstitutionDetails__list'>
+          {DETAILS_TO_SHOW.map((detail:InstitutionDetail) => (
+            <li
+              key={detail}
+              className='InstitutionDetails__list-item'
+            >
+              <b>{DETAIL_TITLE[detail]}:</b> {selectedInstitution[detail] || 'N/A'}
+            </li>
+          ))}
         </ul>
       )}
     </div>

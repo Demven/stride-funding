@@ -35,7 +35,8 @@ $componentName: 'InstitutionsList';
     transition: background 0.3s;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    position: relative;
 
     &:hover {
       background: $color-background-light;
@@ -50,6 +51,12 @@ $componentName: 'InstitutionsList';
     }
   }
 
+  &__name-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
   &__name {
     font-weight: bold;
     line-height: 1.3;
@@ -59,6 +66,26 @@ $componentName: 'InstitutionsList';
     margin-top: 8px;
     font-size: 12px;
     color: $color-text-light;
+  }
+
+  &__annual-rate {
+    padding-left: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1;
+    color: $color-text-light;
+
+    &--passing {
+      color: $color-green;
+    }
+
+    &--zone {
+      color: $color-peach;
+    }
+
+    &--failing {
+      color: $color-red;
+    }
   }
 
   &__no-results {

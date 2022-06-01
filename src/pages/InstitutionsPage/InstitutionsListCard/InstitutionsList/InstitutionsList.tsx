@@ -41,12 +41,27 @@ function InstitutionsList (props:InstitutionsListProps) {
             })}
             onClick={() => onSelectInstitution(institution)}
           >
-            <span className='InstitutionsList__name'>
-              {institution.name}
-            </span>
+            <div className='InstitutionsList__name-wrapper'>
+              <span className='InstitutionsList__name'>
+                {institution.name}
+              </span>
 
-            <span className='InstitutionsList__address'>
-             {institution.city}, {institution.state} {institution.zip}
+              <span className='InstitutionsList__address'>
+                {institution.city}, {institution.state} {institution.zip}
+              </span>
+            </div>
+
+            <span
+              className={classNames('InstitutionsList__annual-rate', {
+                'InstitutionsList__annual-rate--passing': institution.annualRate <= 8,
+                'InstitutionsList__annual-rate--zone': institution.annualRate > 8 && institution.annualRate < 12,
+                'InstitutionsList__annual-rate--failing': institution.annualRate >= 12,
+              })}
+            >
+             {Number(institution.annualRate)
+               ? Number(institution.annualRate).toFixed(2)
+               : ''
+             }
             </span>
           </li>
         );
