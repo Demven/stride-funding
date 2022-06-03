@@ -5,8 +5,6 @@
   "author": "Dmitry Salnikov",
   "dependencies": {
     "classnames": "^2.3.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.3",
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
@@ -24,12 +22,11 @@
     "@types/react-dom": "^17.0.13",
     "@types/react-redux": "^7.1.23",
     "@types/react-router-dom": "^5.3.0",
-    "typescript": "^4.6.2"
+    "typescript": "^4.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "node server",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

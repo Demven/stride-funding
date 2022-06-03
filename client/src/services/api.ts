@@ -8,7 +8,7 @@ export function signIn (
   name:string,
   email:string,
 ):Promise<Account> {
-  return fetch(`${API_HOST}/sign-in`, {
+  return fetch(`${API_HOST}/account/sign-in`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
