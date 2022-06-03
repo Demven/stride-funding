@@ -18,6 +18,7 @@ interface InstitutionsListCardProps {
   className?: string;
   showSaved?: boolean;
   institutionsLoading: boolean;
+  savedInstitutionsLoading: boolean;
   selectedInstitution: Institution|undefined;
   onSelectInstitution: (institution:Institution) => void;
   fetchInstitutions: (filters?:InstitutionFilters) => void;
@@ -28,6 +29,7 @@ function InstitutionsListCard (props:InstitutionsListCardProps) {
     className,
     showSaved,
     institutionsLoading,
+    savedInstitutionsLoading,
     selectedInstitution,
     onSelectInstitution,
     fetchInstitutions,
@@ -69,17 +71,19 @@ function InstitutionsListCard (props:InstitutionsListCardProps) {
                 : (showSaved ? 'Saved' : 'Top 100')}
             </div>
 
-            <IconButton
-              className='InstitutionsListCard__filters-button'
-              iconUrl='/icons/filters.png'
-              iconAlt='Filters'
-              active={filtersVisible}
-              toggled={filtersVisible}
-              onClick={toggleFilters}
-            />
+            {!showSaved && (
+              <IconButton
+                className='InstitutionsListCard__filters-button'
+                iconUrl='/icons/filters.png'
+                iconAlt='Filters'
+                active={filtersVisible}
+                toggled={filtersVisible}
+                onClick={toggleFilters}
+              />
+            )}
           </div>
 
-          {filtersVisible && (
+          {(filtersVisible && !showSaved) && (
             <div className='InstitutionsListCard__filters'>
               <TextField
                 className='InstitutionsListCard__filter'
@@ -101,7 +105,7 @@ function InstitutionsListCard (props:InstitutionsListCardProps) {
         </>
       )}
     >
-      <Loader loading={institutionsLoading} />
+      <Loader loading={institutionsLoading || savedInstitutionsLoading} />
 
       <InstitutionsList
         className='InstitutionsListCard__list'
@@ -116,6 +120,7 @@ const mapStateToProps = (state:State) => {
   return {
     showSaved: state.ui.showSaved,
     institutionsLoading: state.institutions.institutionsLoading,
+    savedInstitutionsLoading: state.institutions.savedInstitutionsLoading,
   };
 };
 

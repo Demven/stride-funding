@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
+import RateLabel from '../../../../components/RateLabel/RateLabel';
 import Institution from '../../../../types/Institution';
 import './InstitutionDetails.scss';
-import RateLabel from "../../../../components/RateLabel/RateLabel";
 
 interface InstitutionDetailsProps {
   className?: string;
