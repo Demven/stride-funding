@@ -1,0 +1,26 @@
+.InstitutionsPage {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-start;
+
+  &__sidebar {
+    width: 400px;
+    padding: 30px 15px 30px 30px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  &__sidebar-card:not(:first-child) {
+    margin-top: 30px;
+  }
+
+  &__main-content {
+    padding: 30px 30px 30px 15px;
+    flex-grow: 1;
+    align-self: normal;
+    box-sizing: border-box;
+  }
+}

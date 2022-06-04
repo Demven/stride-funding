@@ -1,0 +1,32 @@
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.Button {
+  width: 160px;
+  appearance: none;
+  padding: 12px;
+  font-family: $font-sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: bold;
+  border: 2px solid $color-background;
+  border-radius: 4px;
+  background: $color-background;
+  color: $color-text-medium;
+  cursor: pointer;
+  outline-color: $color-background;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+  &--disabled {
+    background: $color-background-light;
+    border-color: $color-background-light;
+    color: $color-background;
+    cursor: not-allowed;
+  }
+}
+
+.Button:not(.Button--disabled):hover {
+  border-color: $color-pink;
+  background: $color-pink;
+}
